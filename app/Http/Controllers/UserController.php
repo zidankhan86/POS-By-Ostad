@@ -178,4 +178,27 @@ class UserController extends Controller
 
 
     }
+
+
+    //pages
+
+    public function LoginPage(){
+        return view('pages.auth.login-page');
+    }
+
+    public function RegistrationPage(){
+        return view('pages.auth.register-page');
+    }
+
+    public function SendOtpPage(){
+        return view('pages.auth.send-otp-page');
+    }
+
+    public function VerifyOTPPage(){
+        return view('pages.auth.verify');
+    }
+
+    public function ResetPasswordPage(){
+        return view('pages.auth.reset-pass-page');
+    }
 }
