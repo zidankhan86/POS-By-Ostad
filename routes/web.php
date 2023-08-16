@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\TokenVarificationMiddleware;
 
@@ -34,3 +37,7 @@ Route::get('/sendOtp',[UserController::class,'SendOtpPage']);
 Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
 Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middleware([TokenVarificationMiddleware::class]);
 Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenVarificationMiddleware::class]);
+Route::get('/userProfile',[UserController::class,'ProfilePage'])->middleware([TokenVarificationMiddleware::class]);
+Route::get('/categoryPage',[CategoryController::class,'CategoryPage'])->middleware([TokenVarificationMiddleware::class]);
+Route::get('/customerPage',[CustomerController::class,'CustomerPage'])->middleware([TokenVarificationMiddleware::class]);
+Route::get('/productPage',[ProductController::class,'ProductPage'])->middleware([TokenVarificationMiddleware::class]);

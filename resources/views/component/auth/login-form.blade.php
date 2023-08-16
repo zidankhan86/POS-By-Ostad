@@ -23,3 +23,43 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+async function SubmitLogin(){
+
+    let email=document.getElementById('email').value;
+              let password=document.getElementById('password').value;
+
+
+        if(email.length === 0 ){
+
+            errorToast("Email Required");
+
+        }else if(password.length === 0){
+            errorToast('Password Required');
+        }
+
+        else{
+                  showLoader();
+                  let res=await axios.post("/user-login",{email:email, password:password});
+                  hideLoader()
+                  if(res.status===200 && res.data['status']==='success'){
+                      window.location.href="/dashboard";
+                  }
+
+
+                  else{
+                      errorToast('Failed');
+                  }
+
+
+                }
+
+
+
+    }
+</script>
+
+
