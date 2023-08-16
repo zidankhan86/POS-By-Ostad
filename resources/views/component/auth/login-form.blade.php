@@ -9,7 +9,7 @@
                     <br/>
                     <input id="password" placeholder="User Password" class="form-control" type="password"/>
                     <br/>
-                    <button onclick="SubmitLogin()" class="btn w-100 bg-gradient-primary">Next</button>
+                    <button onclick="LoginSubmit()" class="btn w-100 bg-gradient-primary">Next</button>
                     <hr/>
                     <div class="float-end mt-3">
                         <span>
@@ -25,40 +25,46 @@
 </div>
 
 
-<script>
-
+{{-- <script>
 async function SubmitLogin(){
+let email=document.getElementById('email').value;let password=document.getElementById('password').value;
+if(email.length === 0 ){  errorToast("Email Required"); }else if(password.length === 0){errorToast('Password Required');  }
+else{showLoader();let res=await axios.post("/user-login",{email:email, password:password});
+hideLoader()if(res.status===200 && res.data['status']==='success'){window.location.href="/dashboard"; } else{ errorToast('Failed'); }}}
+</script> --}}
 
-    let email=document.getElementById('email').value;
-              let password=document.getElementById('password').value;
+<script>
+    async function LoginSubmit() {
 
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
 
-        if(email.length === 0 ){
-
-            errorToast("Email Required");
-
+        //validation
+        if(email.length === 0){
+            errorToast('Email Required');
         }else if(password.length === 0){
+
             errorToast('Password Required');
+
+        }else{
+
+        // Jodi shob thik thake taile else block e Ajax Request chalabo
+        //Ajax Request
+
+        showLoader();
+
+        let response = await axios.post("/user-login",{email:email , password:password});
+
+        hideLoader();
+            if(response.status === 200 &&  response.data['status'] === 'success' ){
+
+                window.location.href=("/dashboard");
+
+            }else{
+
+                errorToast('Something Went Wrong , Try Again Latter');
+            }
         }
-
-        else{
-                  showLoader();
-                  let res=await axios.post("/user-login",{email:email, password:password});
-                  hideLoader()
-                  if(res.status===200 && res.data['status']==='success'){
-                      window.location.href="/dashboard";
-                  }
-
-
-                  else{
-                      errorToast('Failed');
-                  }
-
-
-                }
-
-
-
     }
 </script>
 
